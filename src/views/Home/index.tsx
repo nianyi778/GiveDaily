@@ -1,8 +1,9 @@
 import {useTranslation} from 'react-i18next';
 
-import {View, Text, Button} from 'react-native';
+import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {LangSwitcher} from '@/components/LangSwitcher';
+import {Button} from '@/components/ui/Button';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -15,6 +16,7 @@ export default function HomeScreen() {
       <Text>{t('welcome')}</Text>
       <Text>{t('greeting', {name: '小李'})}</Text>
       <Button
+        variant="primary"
         title="去详情页"
         onPress={() => navigation.navigate('Detail' as never)} // 类型强转防止 ts 报错
       />
