@@ -3,15 +3,18 @@ import {useTranslation} from 'react-i18next';
 import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {LangSwitcher} from '@/components/LangSwitcher';
-import {Button} from '@/components/ui/Button';
+import {Button} from '@/ui/Button';
+// import {PageWrapper} from '@/components/PageWrapper';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
   const {t} = useTranslation();
 
   return (
+    // <PageWrapper>
     <View className="p-4">
       <Text className="text-lg">这是首页</Text>
+
       <LangSwitcher />
       <Text>{t('welcome')}</Text>
       <Text>{t('greeting', {name: '小李'})}</Text>
@@ -21,5 +24,6 @@ export default function HomeScreen() {
         onPress={() => navigation.navigate('Detail' as never)} // 类型强转防止 ts 报错
       />
     </View>
+    // </PageWrapper>
   );
 }

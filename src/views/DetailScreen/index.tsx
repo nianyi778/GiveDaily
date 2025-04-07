@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {ThemedButton} from '@/components/ui/ThemedButton';
+import {ThemedButton} from '@/ui/ThemedButton';
 import {ThemeSwitcher} from '@/components/ThemeSwitcher';
 
 export default function DetailScreen() {

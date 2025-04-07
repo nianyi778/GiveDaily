@@ -20,7 +20,7 @@ function App(): React.JSX.Element {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{headerShown: false}} // 👈 隐藏头部
+          // options={{headerShown: false}} // 👈 隐藏头部
         />
         <Stack.Screen name="Detail" component={DetailScreen} />
       </Stack.Navigator>
