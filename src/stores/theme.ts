@@ -1,5 +1,4 @@
-// src/stores/theme.ts
-import {create} from 'zustand';
+import {createPersistedStore} from './createPersistedStore';
 
 type Theme = 'light' | 'dark' | 'japan';
 
@@ -8,7 +7,10 @@ interface ThemeStore {
   setTheme: (theme: Theme) => void;
 }
 
-export const useThemeStore = create<ThemeStore>(set => ({
-  theme: 'light',
-  setTheme: theme => set({theme}),
-}));
+export const useThemeStore = createPersistedStore<ThemeStore>(
+  'theme-storage',
+  set => ({
+    theme: 'light',
+    setTheme: theme => set({theme}),
+  }),
+);

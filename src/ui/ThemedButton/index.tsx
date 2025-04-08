@@ -1,52 +1,69 @@
 import {Pressable, Text, PressableProps} from 'react-native';
 import {useThemeStore} from '@/stores/theme';
-import {tv} from 'tailwind-variants';
 import clsx from 'clsx';
 
-// 1️⃣ 定义 Button 样式变体
-const button = tv({
-  base: 'px-4 py-3 rounded-xl shadow-md',
-  variants: {
-    theme: {
-      light: 'bg-primary-light',
-      dark: 'bg-primary-dark',
-      japan: 'bg-primary-japan',
-    },
-    block: {
-      true: 'w-full',
-    },
-  },
-});
-
-// 2️⃣ 定义 Text 样式变体
-const buttonText = tv({
-  base: 'text-center font-semibold',
-  variants: {
-    theme: {
-      light: 'text-textcolor-light',
-      dark: 'text-textcolor-dark',
-      japan: 'text-textcolor-japan',
-    },
-  },
-});
+type Variant = 'primary' | 'secondary';
 
 interface ThemedButtonProps extends PressableProps {
-  title: string;
+  title?: string;
+  children?: React.ReactNode;
   block?: boolean;
+  variant?: Variant;
+  shadow?: boolean;
   className?: string;
+  textClassName?: string;
 }
+
+// ✅ 明确所有主题样式，避免动态 className 无效
+const buttonThemeMap: Record<string, string> = {
+  light: 'bg-primary-light',
+  dark: 'bg-primary-dark',
+  japan: 'bg-primary-japan',
+};
+
+const textThemeMap: Record<string, string> = {
+  light: 'text-textcolor-light',
+  dark: 'text-textcolor-dark',
+  japan: 'text-textcolor-japan',
+};
 
 export const ThemedButton = ({
   title,
-  block,
+  children,
+  block = false,
+  variant = 'primary',
+  shadow = true,
   className,
+  textClassName,
   ...props
 }: ThemedButtonProps) => {
   const {theme} = useThemeStore();
 
   return (
-    <Pressable className={clsx(button({theme, block}), className)} {...props}>
-      <Text className={buttonText({theme})}>{title}</Text>
+    <Pressable
+      className={clsx(
+        'px-4 py-3 rounded-xl justify-center items-center',
+        block && 'w-full',
+        shadow && 'shadow-md',
+        variant === 'primary' && buttonThemeMap[theme],
+        variant === 'secondary' && 'bg-muted-light dark:bg-muted-dark',
+        className,
+      )}
+      {...props}>
+      {children ? (
+        children
+      ) : (
+        <Text
+          className={clsx(
+            'text-base font-semibold',
+            variant === 'primary' && textThemeMap[theme],
+            variant === 'secondary' &&
+              'text-textcolor-light dark:text-textcolor-dark',
+            textClassName,
+          )}>
+          {title}
+        </Text>
+      )}
     </Pressable>
   );
 };

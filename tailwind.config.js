@@ -5,23 +5,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // 主色调变量
         primary: {
-          light: '#3B82F6', // 蓝色
-          dark: '#8B5CF6', // 紫色
-          japan: '#E11D48', // 红红日系
+          light: 'hsl(220, 85%, 60%)', // 天空蓝（科技感）
+          dark: 'hsl(270, 45%, 55%)', // 紫色偏灰（沉稳）
+          japan: 'hsl(350, 70%, 55%)', // 暖红（樱花风）
         },
-        // 背景色变量
         background: {
-          light: '#ffffff',
-          dark: '#1f2937',
-          japan: '#f5f3f0',
+          light: 'hsl(0, 0%, 100%)', // 白
+          dark: 'hsl(230, 15%, 10%)', // 深蓝灰
+          japan: 'hsl(30, 50%, 95%)', // 米白
         },
-        // 字体色变量
         textcolor: {
-          light: '#1f2937',
-          dark: '#f9fafb',
-          japan: '#1c1c1c',
+          light: 'hsl(220, 20%, 20%)', // 深灰蓝
+          dark: 'hsl(0, 0%, 98%)', // 近白
+          japan: 'hsl(10, 20%, 20%)', // 深红灰
+        },
+        muted: {
+          light: 'hsl(220, 20%, 85%)',
+          dark: 'hsl(220, 10%, 30%)',
+          japan: 'hsl(20, 25%, 80%)',
         },
       },
     },
